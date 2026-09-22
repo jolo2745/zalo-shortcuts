@@ -1,0 +1,28 @@
+# .NET build output
+bin/
+obj/
+artifacts/
+
+# IDE and user settings
+.vs/
+.vscode/
+.idea/
+*.suo
+*.user
+*.userosscache
+
+# Local application data
+shortcuts.json
+shortcuts.json.*
+settings.json
+
+# Signing credentials and platform packaging secrets
+*.cer
+*.p12
+*.pfx
+*.provisionprofile
+*.mobileprovision
+
+# Operating-system files
+.DS_Store
+Thumbs.db

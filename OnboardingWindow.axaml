@@ -1,0 +1,187 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ZaloShortcuts.OnboardingWindow"
+        Width="690"
+        Height="650"
+        MinWidth="620"
+        MinHeight="570"
+        CanResize="True"
+        WindowStartupLocation="CenterOwner"
+        Icon="/Assets/icon.png"
+        Background="#F4F7FB"
+        Title="Set up Zalo Shortcuts">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Border Grid.Row="0"
+                Background="#0A73EB"
+                Padding="28,24">
+            <StackPanel Spacing="6">
+                <TextBlock Text="Let’s get Zalo Shortcuts ready"
+                           FontSize="25"
+                           FontWeight="Bold"
+                           Foreground="White" />
+                <TextBlock Text="Three quick steps, then you can test your first shortcut."
+                           FontSize="13"
+                           Foreground="#DDEEFF" />
+            </StackPanel>
+        </Border>
+
+        <ScrollViewer Grid.Row="1">
+            <StackPanel Margin="28,24"
+                        Spacing="16">
+                <Border Background="White"
+                        BorderBrush="#DCE5F0"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="18">
+                    <Grid ColumnDefinitions="42,*">
+                        <Border Width="32"
+                                Height="32"
+                                Background="#0A73EB"
+                                CornerRadius="16"
+                                VerticalAlignment="Top">
+                            <TextBlock Text="1"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       FontWeight="Bold" />
+                        </Border>
+                        <StackPanel Grid.Column="1" Spacing="7">
+                            <TextBlock Text="Keep shortcuts ready automatically"
+                                       FontSize="17"
+                                       FontWeight="SemiBold" />
+                            <TextBlock Text="Zalo Shortcuts can start quietly in the tray when you sign in, so each day you only need to open Zalo."
+                                       FontSize="12"
+                                       Foreground="#65748A"
+                                       TextWrapping="Wrap" />
+                            <CheckBox Name="StartAtLoginCheckBox"
+                                      IsChecked="True">
+                                <TextBlock Text="Start Zalo Shortcuts automatically when I sign in"
+                                           FontWeight="SemiBold"
+                                           TextWrapping="Wrap" />
+                            </CheckBox>
+                            <TextBlock Text="Recommended. You can change this later by reopening the Setup guide."
+                                       FontSize="11"
+                                       Foreground="#748297"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Background="White"
+                        BorderBrush="#DCE5F0"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="18">
+                    <Grid ColumnDefinitions="42,*">
+                        <Border Width="32"
+                                Height="32"
+                                Background="#0A73EB"
+                                CornerRadius="16"
+                                VerticalAlignment="Top">
+                            <TextBlock Text="2"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       FontWeight="Bold" />
+                        </Border>
+                        <StackPanel Grid.Column="1" Spacing="8">
+                            <TextBlock Text="Allow the keyboard shortcut permission"
+                                       FontSize="17"
+                                       FontWeight="SemiBold" />
+
+                            <Border Name="WindowsPermissionPanel"
+                                    Background="#EDF8F2"
+                                    CornerRadius="8"
+                                    Padding="12">
+                                <TextBlock Text="Windows: no additional permission is normally needed. If Windows Security asks, allow the app only if you downloaded it from a source you trust."
+                                           FontSize="12"
+                                           Foreground="#276749"
+                                           TextWrapping="Wrap" />
+                            </Border>
+
+                            <StackPanel Name="MacPermissionPanel" Spacing="8">
+                                <TextBlock Text="Mac: the Accessibility page opens automatically. Turn on Zalo Shortcuts there; this guide detects the permission and continues without a manual restart."
+                                           FontSize="12"
+                                           Foreground="#5D4B16"
+                                           TextWrapping="Wrap" />
+                                <TextBlock Name="AccessibilityStatusText"
+                                           Text="Checking Accessibility permission…"
+                                           FontSize="12"
+                                           FontWeight="SemiBold"
+                                           Foreground="#5D4B16"
+                                           TextWrapping="Wrap" />
+                                <Button Content="Open Accessibility Settings"
+                                        HorizontalAlignment="Left"
+                                        Click="OpenAccessibilitySettingsClicked" />
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <Border Background="White"
+                        BorderBrush="#DCE5F0"
+                        BorderThickness="1"
+                        CornerRadius="12"
+                        Padding="18">
+                    <Grid ColumnDefinitions="42,*">
+                        <Border Width="32"
+                                Height="32"
+                                Background="#0A73EB"
+                                CornerRadius="16"
+                                VerticalAlignment="Top">
+                            <TextBlock Text="3"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Foreground="White"
+                                       FontWeight="Bold" />
+                        </Border>
+                        <StackPanel Grid.Column="1" Spacing="7">
+                            <TextBlock Text="Test the included example"
+                                       FontSize="17"
+                                       FontWeight="SemiBold" />
+                            <TextBlock Text="A sample /hello message is already saved. Finish this guide, switch to Zalo Desktop, type /hel and press Tab. The sample message should appear. Press Enter only when you want to send it."
+                                       FontSize="12"
+                                       Foreground="#65748A"
+                                       TextWrapping="Wrap" />
+                            <Border Background="#EAF4FF"
+                                    CornerRadius="8"
+                                    Padding="11">
+                                <TextBlock Text="/hel  +  Tab  →  Hello! Thanks for your message."
+                                           FontFamily="Cascadia Mono,Consolas,Menlo,monospace"
+                                           Foreground="#075FBF"
+                                           TextWrapping="Wrap" />
+                            </Border>
+                        </StackPanel>
+                    </Grid>
+                </Border>
+
+                <TextBlock Name="SetupStatusText"
+                           FontSize="12"
+                           Foreground="#B42318"
+                           TextWrapping="Wrap" />
+            </StackPanel>
+        </ScrollViewer>
+
+        <Border Grid.Row="2"
+                Background="White"
+                BorderBrush="#D5DFEA"
+                BorderThickness="0,1,0,0"
+                Padding="22,14">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <Button Content="Skip for now"
+                        Click="SkipClicked" />
+                <TextBlock Grid.Column="1"
+                           Margin="14,0"
+                           Text="You can reopen this guide from Setup guide."
+                           FontSize="11"
+                           Foreground="#748297"
+                           VerticalAlignment="Center" />
+                <Button Name="FinishButton"
+                        Grid.Column="2"
+                        Content="Finish and show manager"
+                        Classes="primary"
+                        Click="FinishClicked" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

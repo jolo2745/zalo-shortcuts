@@ -1,0 +1,241 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:models="using:ZaloShortcuts.Models"
+        mc:Ignorable="d"
+        d:DesignWidth="1000"
+        d:DesignHeight="680"
+        x:Class="ZaloShortcuts.MainWindow"
+        Width="1000"
+        Height="680"
+        MinWidth="820"
+        MinHeight="560"
+        Icon="/Assets/icon.png"
+        Background="#F4F7FB"
+        Title="Zalo Shortcuts">
+    <Grid RowDefinitions="Auto,*,Auto">
+        <Border Grid.Row="0" Background="#0A73EB" Padding="28,22">
+            <Grid ColumnDefinitions="*,Auto">
+                <StackPanel Spacing="5">
+                    <TextBlock Text="Zalo Shortcuts"
+                               FontSize="25"
+                               FontWeight="Bold"
+                               Foreground="White" />
+                    <TextBlock Text="Unlimited local slash messages for desktop apps"
+                               FontSize="13"
+                               Foreground="#DDEEFF" />
+                </StackPanel>
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal"
+                            VerticalAlignment="Center"
+                            Spacing="10">
+                    <Button Content="Setup guide"
+                            Background="#2085EC"
+                            Foreground="White"
+                            Click="SetupGuideClicked" />
+                    <TextBlock Name="EnabledLabel"
+                               Text="Shortcuts on"
+                               VerticalAlignment="Center"
+                               FontWeight="SemiBold"
+                               Foreground="White" />
+                    <ToggleSwitch Name="EnabledToggle"
+                                  IsChecked="True"
+                                  IsCheckedChanged="EnabledToggleChanged" />
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <Grid Grid.Row="1"
+              Margin="24"
+              ColumnDefinitions="340,18,*">
+            <Border Grid.Column="0"
+                    Background="White"
+                    BorderBrush="#DDE5EF"
+                    BorderThickness="1"
+                    CornerRadius="12"
+                    Padding="16">
+                <Grid RowDefinitions="Auto,Auto,*,Auto">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <StackPanel>
+                            <TextBlock Text="Saved messages"
+                                       FontSize="18"
+                                       FontWeight="SemiBold" />
+                            <TextBlock Name="CountText"
+                                       Margin="0,3,0,0"
+                                       FontSize="12"
+                                       Foreground="#66758A" />
+                        </StackPanel>
+                        <Button Grid.Column="1"
+                                Content="+ New"
+                                Classes="primary"
+                                Click="NewClicked" />
+                    </Grid>
+
+                    <TextBox Name="SearchBox"
+                             Grid.Row="1"
+                             Margin="0,14,0,10"
+                             PlaceholderText="Search shortcuts"
+                             TextChanged="SearchChanged" />
+
+                    <ListBox Name="ShortcutList"
+                             Grid.Row="2"
+                             Background="Transparent"
+                             BorderThickness="0"
+                             SelectionChanged="ShortcutSelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate x:DataType="models:ShortcutMessage">
+                                <Border Padding="10"
+                                        Margin="0,2"
+                                        CornerRadius="8"
+                                        BorderBrush="#E2E8F0"
+                                        BorderThickness="1">
+                                    <StackPanel Spacing="3">
+                                        <TextBlock Text="{Binding TriggerDisplay}"
+                                                   FontWeight="SemiBold"
+                                                   Foreground="#0A73EB" />
+                                        <TextBlock Text="{Binding Title}"
+                                                   FontSize="13"
+                                                   TextTrimming="CharacterEllipsis" />
+                                        <TextBlock Text="{Binding MessagePreview}"
+                                                   FontSize="11"
+                                                   Foreground="#6B778A"
+                                                   TextTrimming="CharacterEllipsis" />
+                                    </StackPanel>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+
+                    <TextBlock Grid.Row="3"
+                               Margin="0,12,0,0"
+                               Text="Tip: keep this app open or close it to the system tray."
+                               FontSize="11"
+                               Foreground="#77859A"
+                               TextWrapping="Wrap" />
+                </Grid>
+            </Border>
+
+            <Border Grid.Column="2"
+                    Background="White"
+                    BorderBrush="#DDE5EF"
+                    BorderThickness="1"
+                    CornerRadius="12"
+                    Padding="24">
+                <ScrollViewer>
+                    <StackPanel Spacing="14">
+                        <StackPanel Spacing="4">
+                            <TextBlock Text="Shortcut details"
+                                       FontSize="20"
+                                       FontWeight="SemiBold" />
+                            <TextBlock Text="Type the shortcut in Zalo, then press Tab to insert the message."
+                                       FontSize="13"
+                                       Foreground="#65748A" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="Shortcut word"
+                                       FontWeight="SemiBold" />
+                            <Grid ColumnDefinitions="34,*">
+                                <Border Background="#EDF4FD"
+                                        CornerRadius="8,0,0,8">
+                                    <TextBlock Text="/"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center"
+                                               FontSize="17"
+                                               Foreground="#0A73EB" />
+                                </Border>
+                                <TextBox Name="KeywordBox"
+                                         Grid.Column="1"
+                                         CornerRadius="0,8,8,0"
+                                         PlaceholderText="hello" />
+                            </Grid>
+                            <TextBlock Text="Use letters, numbers, hyphens, or underscores. Example: /booking-confirmed"
+                                       FontSize="11"
+                                       Foreground="#77859A"
+                                       TextWrapping="Wrap" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="Name"
+                                       FontWeight="SemiBold" />
+                            <TextBox Name="TitleBox"
+                                     PlaceholderText="Booking confirmation" />
+                        </StackPanel>
+
+                        <StackPanel Spacing="6">
+                            <TextBlock Text="Message"
+                                       FontWeight="SemiBold" />
+                            <TextBox Name="MessageBox"
+                                     MinHeight="170"
+                                     AcceptsReturn="True"
+                                     TextWrapping="Wrap"
+                                     VerticalContentAlignment="Top"
+                                     PlaceholderText="Write the full message that should be inserted..." />
+                        </StackPanel>
+
+                        <Border Background="#F0F7FF"
+                                CornerRadius="9"
+                                Padding="13">
+                            <StackPanel Spacing="4">
+                                <TextBlock Text="How it works"
+                                           FontWeight="SemiBold"
+                                           Foreground="#075CB8" />
+                                <TextBlock Text="1. Click Save.  2. Switch to Zalo Desktop.  3. Type / plus part of the shortcut.  4. Press Tab.  5. Press Enter normally to send."
+                                           FontSize="12"
+                                           Foreground="#2D5E8B"
+                                           TextWrapping="Wrap" />
+                            </StackPanel>
+                        </Border>
+
+                        <Grid ColumnDefinitions="Auto,Auto,*,Auto"
+                              ColumnSpacing="10">
+                            <Button Content="Save message"
+                                    Classes="primary"
+                                    Click="SaveClicked" />
+                            <Button Grid.Column="1"
+                                    Content="Clear"
+                                    Click="NewClicked" />
+                            <Button Name="DeleteButton"
+                                    Grid.Column="3"
+                                    Content="Delete"
+                                    Foreground="#B42318"
+                                    IsEnabled="False"
+                                    Click="DeleteClicked" />
+                        </Grid>
+
+                        <TextBlock Name="FormStatusText"
+                                   FontSize="12"
+                                   Foreground="#287A4D"
+                                   TextWrapping="Wrap" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Border>
+        </Grid>
+
+        <Border Grid.Row="2"
+                Background="#EAF0F7"
+                BorderBrush="#D5DFEA"
+                BorderThickness="0,1,0,0"
+                Padding="24,10">
+            <Grid ColumnDefinitions="Auto,*,Auto">
+                <Ellipse Name="StatusDot"
+                         Width="9"
+                         Height="9"
+                         Fill="#2CA66F"
+                         VerticalAlignment="Center"
+                         Margin="0,0,8,0" />
+                <TextBlock Name="EngineStatusText"
+                           Grid.Column="1"
+                           Text="Starting keyboard listener…"
+                           FontSize="12"
+                           VerticalAlignment="Center" />
+                <TextBlock Name="PlatformHelpText"
+                           Grid.Column="2"
+                           FontSize="11"
+                           Foreground="#65748A"
+                           VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

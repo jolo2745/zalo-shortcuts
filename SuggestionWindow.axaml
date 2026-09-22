@@ -1,0 +1,36 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="ZaloShortcuts.SuggestionWindow"
+        Width="440"
+        SizeToContent="Height"
+        MaxHeight="420"
+        WindowDecorations="None"
+        CanResize="False"
+        ShowActivated="False"
+        ShowInTaskbar="False"
+        Topmost="True"
+        Focusable="False"
+        Background="Transparent"
+        TransparencyLevelHint="Transparent">
+    <Border Background="#FDFEFF"
+            BorderBrush="#B9C9DC"
+            BorderThickness="1"
+            CornerRadius="12"
+            Padding="14"
+            BoxShadow="0 8 24 0 #36000000">
+        <Grid RowDefinitions="Auto,Auto,Auto">
+            <TextBlock Name="QueryText"
+                       FontSize="13"
+                       FontWeight="SemiBold"
+                       Foreground="#0A73EB" />
+            <StackPanel Name="ResultsPanel"
+                        Grid.Row="1"
+                        Margin="0,9,0,7"
+                        Spacing="6" />
+            <TextBlock Grid.Row="2"
+                       Text="Tab inserts the first match"
+                       FontSize="10"
+                       Foreground="#78869A" />
+        </Grid>
+    </Border>
+</Window>
