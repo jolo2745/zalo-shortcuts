@@ -7,6 +7,14 @@ into any focused text box on Windows or macOS.
 This is an independent project. It is not affiliated with, endorsed by or
 sponsored by Zalo or VNG Corporation.
 
+```mermaid
+flowchart LR
+    A[Type / and part of a shortcut] --> B[Rank matching local shortcuts]
+    B --> C[Show up to five suggestions]
+    C --> D[Press Tab to insert]
+    D --> E[User reviews and sends manually]
+```
+
 ## What it demonstrates
 
 - Cross-platform desktop UI with Avalonia
